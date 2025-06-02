@@ -1,18 +1,17 @@
 package com.cinelist.cinelist_api.model.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
-import javax.xml.stream.events.Comment;
+import com.cinelist.cinelist_api.model.entities.Comment;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table
 public class Movie {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String title;
     private String synopsis;
     private Integer year;
@@ -21,7 +20,7 @@ public class Movie {
     private String cast;
     private Double averageRating;
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany
     private List<Comment> comments;
 }
 

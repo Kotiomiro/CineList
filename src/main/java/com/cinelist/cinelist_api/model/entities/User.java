@@ -2,7 +2,7 @@ package com.cinelist.cinelist_api.model.entities;
 
 import jakarta.persistence.*;
 
-import javax.xml.stream.events.Comment;
+import com.cinelist.cinelist_api.model.entities.Comment;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,13 +17,13 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany
     private List<Comment> comentarios;
 
     @OneToMany
     private List<Movie> favoritos;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany
     private List<Movie> assistidos;
 
 }

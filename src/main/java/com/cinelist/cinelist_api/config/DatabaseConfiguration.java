@@ -18,15 +18,17 @@ public class DatabaseConfiguration {
     @Value("${spring.datasource.password}")
     String password;
     @Value("${spring.datasource.driver-class-name}")
+    String driver;
 
 
     @Bean
     public DataSource hikariDataSource(){
 
         HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(url);
         config.setUsername(username);
         config.setPassword(password);
-        //config.setDriverClassName(driver);
+        config.setDriverClassName(driver);
 
         config.setMaximumPoolSize(20);
         config.setMinimumIdle(1);
