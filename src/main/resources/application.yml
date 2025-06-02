@@ -1,0 +1,27 @@
+spring:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cinelist
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  security:
+    user:
+      name: admin
+
+  application:
+    name: cinelist-api
+
+
+  jpa:
+    show-sql: true
+
+    hibernate:
+      ddl-auto: update
+
+tmdb:
+  api:
+    key: a1d3782143dfab6136c44340f186dfc4
+
+
