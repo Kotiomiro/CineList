@@ -1,6 +1,6 @@
 package com.cinelist.cinelist_api.repository;
 
-import com.cinelist.cinelist_api.model.entities.Movie;
+import com.cinelist.cinelist_api.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +11,6 @@ import java.util.UUID;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, UUID> {
     Optional<Movie> findMovieById(UUID movieId);
+
+    List<Movie> findMoviesByGenre(String genre);
 }

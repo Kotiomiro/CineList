@@ -1,13 +1,18 @@
-package com.cinelist.cinelist_api.model.entities;
+package com.cinelist.cinelist_api.model;
 
+import com.cinelist.cinelist_api.repository.MovieRepository;
 import jakarta.persistence.*;
+import lombok.*;
 
-import com.cinelist.cinelist_api.model.entities.Comment;
 import java.util.List;
 import java.util.UUID;
 
+@Getter
+@Setter
+@ToString
 @Entity
-@Table
+@AllArgsConstructor
+@NoArgsConstructor
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

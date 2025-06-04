@@ -1,11 +1,18 @@
-package com.cinelist.cinelist_api.model.entities;
+package com.cinelist.cinelist_api.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Getter
+@Setter
+@ToString
 @Entity
+@Table
+@AllArgsConstructor
+@NoArgsConstructor
 public class Comment {
 
     @Id

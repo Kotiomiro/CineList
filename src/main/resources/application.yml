@@ -5,6 +5,13 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 1
+      pool-name: CineList-db-pool
+      max-lifetime: 6000000
+      connection-timeout: 100000
+      connection-test-query: select 1
 
   security:
     user:

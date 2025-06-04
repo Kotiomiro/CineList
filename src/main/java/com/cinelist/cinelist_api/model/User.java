@@ -1,12 +1,17 @@
-package com.cinelist.cinelist_api.model.entities;
+package com.cinelist.cinelist_api.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
-import com.cinelist.cinelist_api.model.entities.Comment;
 import java.util.List;
 import java.util.UUID;
 
+@Getter
+@Setter
+@ToString
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -18,12 +23,12 @@ public class User {
     private String email;
 
     @OneToMany
-    private List<Comment> comentarios;
+    private List<Comment> comments;
 
     @OneToMany
-    private List<Movie> favoritos;
+    private List<Movie> favorites;
 
     @OneToMany
-    private List<Movie> assistidos;
+    private List<Movie> watched;
 
 }

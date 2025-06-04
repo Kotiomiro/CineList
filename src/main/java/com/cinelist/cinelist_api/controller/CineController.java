@@ -1,8 +1,11 @@
 package com.cinelist.cinelist_api.controller;
 
+
 import com.cinelist.cinelist_api.dto.MovieDTO;
+import com.cinelist.cinelist_api.model.Movie;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +18,15 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("cinelist")
 public class CineController {
 
-
     private final RestTemplate restTemplate;
-
-    public CineController(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     @Value("${tmdb.api.key}")
     private String apiKey;
+
+    public CineController(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+
+    }
 
 
     @GetMapping("/search")
@@ -35,7 +38,8 @@ public class CineController {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode root = mapper.readTree(json);
 
-            // Verifica se existe "results" e se não está vazio
+
+
             JsonNode results = root.path("results");
             if (results.isMissingNode() || !results.isArray() || results.size() == 0) {
                 return ResponseEntity.status(404).body("Nenhum filme encontrado para a busca: " + query);
