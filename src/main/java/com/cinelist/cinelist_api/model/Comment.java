@@ -23,9 +23,12 @@ public class Comment {
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 
     private String content;
 
     private LocalDateTime createdAt;
+
+
 }

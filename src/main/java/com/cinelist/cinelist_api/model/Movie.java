@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @Getter
 @Setter
@@ -13,10 +13,11 @@ import java.util.UUID;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "movie")
 public class Movie {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String title;
     private String synopsis;
     private Integer year;
@@ -25,8 +26,6 @@ public class Movie {
     private String cast;
     private Double averageRating;
 
-    @OneToMany
-    private List<Comment> comments;
 }
 
 

@@ -1,8 +1,10 @@
 package com.cinelist.cinelist_api.controller;
 
 
+import com.cinelist.cinelist_api.config.services.MovieService;
 import com.cinelist.cinelist_api.dto.MovieDTO;
 import com.cinelist.cinelist_api.model.Movie;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +16,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+
+
 @RestController
 @RequestMapping("cinelist")
 public class CineController {
 
     private final RestTemplate restTemplate;
+    private final MovieService movieService;
 
     @Value("${tmdb.api.key}")
     private String apiKey;
 
-    public CineController(RestTemplate restTemplate) {
+    public CineController(RestTemplate restTemplate, MovieService movieService) {
         this.restTemplate = restTemplate;
+        this.movieService = movieService;
 
     }
 
@@ -56,6 +62,15 @@ public class CineController {
             return ResponseEntity.status(500).body("Erro ao buscar filme: " + e.getMessage());
         }
     }
+
+
+    @GetMapping("/import")
+    public ResponseEntity<String> importar() throws JsonProcessingException {
+        movieService.importarFilmesPopulares();
+        return ResponseEntity.ok("Importação feita!");
+    }
+
+
 
 
 
