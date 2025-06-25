@@ -5,13 +5,14 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.cinelist.cinelist_api.domain.user.User;
+import com.cinelist.cinelist_api.domain.User;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 
 @Service
 public class TokenService {
@@ -19,41 +20,50 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
+    @Value("${api.security.token.expiration-time-in-seconds}")
+    private Long expirationTimeInSeconds;
+    private Algorithm algorithm;
+
+    @PostConstruct
+    private void postConstruct() {
+        algorithm = Algorithm.HMAC256(secret);
+    }
 
     public String generateToken(User user) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
+            var issuer = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+            var issuedAt = Instant.now();
+            var expiresAt = issuedAt.plusSeconds(expirationTimeInSeconds);
+            var roles = user
+                    .getAuthorities()
+                    .stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .toList();
 
-            String token = JWT.create().withIssuer("cinelist-api")
+            return JWT
+                    .create()
+                    .withIssuer(issuer)
                     .withSubject(user.getLogin())
-                    .withExpiresAt(generateExpirationDate())
+                    .withIssuedAt(issuedAt)
+                    .withExpiresAt(expiresAt)
+                    .withClaim("roles", roles)
                     .sign(algorithm);
-            return token;
         } catch (JWTCreationException e) {
             throw new RuntimeException("Error: " + e.getMessage());
         }
-
     }
-
 
     public String validateToken(String token) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
-            return JWT.require(algorithm)
+            return JWT
+                    .require(algorithm)
                     .withIssuer("cinelist-api")
                     .build()
                     .verify(token)
                     .getSubject();
-
         } catch (JWTVerificationException e) {
             return "";
         }
-
-
     }
 
-    private Instant generateExpirationDate() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
-    }
 }
-

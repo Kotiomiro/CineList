@@ -1,6 +1,6 @@
 package com.cinelist.cinelist_api.repository;
 
-import com.cinelist.cinelist_api.domain.user.User;
+import com.cinelist.cinelist_api.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;

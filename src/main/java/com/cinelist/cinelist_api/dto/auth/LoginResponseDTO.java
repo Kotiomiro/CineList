@@ -1,4 +1,4 @@
-package com.cinelist.cinelist_api.domain.dto;
+package com.cinelist.cinelist_api.dto.auth;
 
 public record LoginResponseDTO(String token) {
 }

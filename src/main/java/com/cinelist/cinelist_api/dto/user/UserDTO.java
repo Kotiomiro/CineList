@@ -1,4 +1,4 @@
-package com.cinelist.cinelist_api.domain.dto;
+package com.cinelist.cinelist_api.dto.user;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

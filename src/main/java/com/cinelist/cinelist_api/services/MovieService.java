@@ -44,8 +44,4 @@ public class MovieService {
                 .orElseGet(() -> ResponseEntity.notFound().build()).getBody();
     }
 
-
-
-
-
 }

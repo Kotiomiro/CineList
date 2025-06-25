@@ -1,6 +1,6 @@
-package com.cinelist.cinelist_api.domain.user;
+package com.cinelist.cinelist_api.domain;
 
-import com.cinelist.cinelist_api.domain.Comment;
+import com.cinelist.cinelist_api.domain.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,9 +29,7 @@ public class User implements UserDetails {
     private String password;
     @Column(unique = true)
     private String email;
-
     private UserRole role;
-
 
     public User(String login, String password, UserRole role) {
         this.login = login;
@@ -47,7 +45,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == role.ADMIN) return List.of(new SimpleGrantedAuthority("role_ADMIN"), new SimpleGrantedAuthority("role_USER"));
+        if (this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("role_ADMIN"), new SimpleGrantedAuthority("role_USER"));
         else return List.of(new SimpleGrantedAuthority("role_USER"));
     }
 

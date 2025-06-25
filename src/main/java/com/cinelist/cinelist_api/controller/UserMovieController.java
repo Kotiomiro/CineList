@@ -1,7 +1,7 @@
 package com.cinelist.cinelist_api.controller;
 
 
-import com.cinelist.cinelist_api.domain.user.UserMovie;
+import com.cinelist.cinelist_api.domain.UserMovie;
 import com.cinelist.cinelist_api.repository.UserMovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
