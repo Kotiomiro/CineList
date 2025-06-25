@@ -1,0 +1,32 @@
+package com.cinelist.cinelist_api.domain.user;
+
+import com.cinelist.cinelist_api.domain.Movie;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.UUID;
+
+@Getter
+@Setter
+@Table
+@Entity
+public class UserMovie {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+
+    private Boolean watched;
+
+    private Boolean isFavorite;
+
+}

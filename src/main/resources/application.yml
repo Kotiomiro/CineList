@@ -1,5 +1,4 @@
 spring:
-
   datasource:
     url: jdbc:postgresql://localhost:5432/cinelist
     username: postgres
@@ -16,19 +15,26 @@ spring:
   security:
     user:
       name: admin
+      password: admin
 
   application:
     name: cinelist-api
 
-
   jpa:
     show-sql: true
-
     hibernate:
-      ddl-auto: update
+        ddl-auto: update
+    properties:
+        hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
 
 tmdb:
   api:
     key: a1d3782143dfab6136c44340f186dfc4
+
+
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:my-secret-key}
 
 
