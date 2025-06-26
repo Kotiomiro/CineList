@@ -26,17 +26,6 @@ public class UserService {
         return repository.findAll();
     }
 
-    public void saveKotiomiro() {
-        User user = new User();
-
-        user.setLogin("kotiomiro4312");
-        user.setUsername("kotiomiroooo");
-        user.setEmail("AFADKJGDA@gmail.com");
-        user.setPassword("ewr325sd2#");
-
-        repository.save(user);
-    }
-
     public Optional<String> findEmail(User user) {
         return user.getEmail().describeConstable();
     }

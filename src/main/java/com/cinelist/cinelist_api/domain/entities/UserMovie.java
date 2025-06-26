@@ -1,5 +1,7 @@
-package com.cinelist.cinelist_api.domain;
+package com.cinelist.cinelist_api.domain.entities;
 
+import com.cinelist.cinelist_api.domain.Movie;
+import com.cinelist.cinelist_api.domain.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

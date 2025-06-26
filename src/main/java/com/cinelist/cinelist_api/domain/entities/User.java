@@ -1,5 +1,6 @@
 package com.cinelist.cinelist_api.domain;
 
+import com.cinelist.cinelist_api.domain.entities.UserMovie;
 import com.cinelist.cinelist_api.domain.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
@@ -31,17 +32,14 @@ public class User implements UserDetails {
     private String email;
     private UserRole role;
 
+    @OneToOne
+    private UserMovie userMovie;
+
     public User(String login, String password, UserRole role) {
         this.login = login;
         this.password = password;
         this.role = role;
     }
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
-    private List<Comment> comments;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserMovie> movies;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

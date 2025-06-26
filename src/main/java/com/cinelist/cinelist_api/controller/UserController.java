@@ -1,6 +1,7 @@
 package com.cinelist.cinelist_api.controller;
 
 import com.cinelist.cinelist_api.domain.User;
+import com.cinelist.cinelist_api.infra.security.annotation.RequireAdminPermission;
 import com.cinelist.cinelist_api.repository.UserRepository;
 import com.cinelist.cinelist_api.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,6 +35,7 @@ public class UserController {
         service.saveUser(user);
     }
 
+    @RequireAdminPermission
     @DeleteMapping("/{id}")
     void deleteUser(@RequestBody User user) {
         service.deleteUser(user.getId());
