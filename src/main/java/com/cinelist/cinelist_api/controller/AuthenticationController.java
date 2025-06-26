@@ -1,10 +1,10 @@
 package com.cinelist.cinelist_api.controller;
 
 
-import com.cinelist.cinelist_api.domain.user.User;
-import com.cinelist.cinelist_api.domain.dto.AuthenticationDTO;
-import com.cinelist.cinelist_api.domain.dto.LoginResponseDTO;
-import com.cinelist.cinelist_api.domain.dto.RegisterDTO;
+import com.cinelist.cinelist_api.domain.User;
+import com.cinelist.cinelist_api.dto.auth.AuthenticationDTO;
+import com.cinelist.cinelist_api.dto.auth.LoginResponseDTO;
+import com.cinelist.cinelist_api.dto.auth.RegisterDTO;
 import com.cinelist.cinelist_api.infra.TokenService;
 import com.cinelist.cinelist_api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

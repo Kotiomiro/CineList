@@ -1,11 +1,9 @@
 package com.cinelist.cinelist_api.services;
 
 
-import com.cinelist.cinelist_api.domain.user.User;
+import com.cinelist.cinelist_api.domain.User;
 import com.cinelist.cinelist_api.repository.UserRepository;
-import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,15 +12,13 @@ import java.util.UUID;
 @Service
 public class UserService {
 
-    private final ListableBeanFactory listableBeanFactory;
     UserRepository repository;
 
-    UserService(UserRepository repository, ListableBeanFactory listableBeanFactory) {
+    UserService(UserRepository repository) {
         this.repository = repository;
-        this.listableBeanFactory = listableBeanFactory;
     }
 
-    public void saveUser(@RequestBody User user) {
+    public void saveUser(User user) {
         repository.save(user);
     }
 
@@ -48,7 +44,5 @@ public class UserService {
     public void deleteUser(UUID id) {
         repository.deleteById(id);
     }
-
-
 
 }

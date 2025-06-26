@@ -1,6 +1,6 @@
 package com.cinelist.cinelist_api;
 
-import com.cinelist.cinelist_api.domain.user.User;
+import com.cinelist.cinelist_api.domain.User;
 import com.cinelist.cinelist_api.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;

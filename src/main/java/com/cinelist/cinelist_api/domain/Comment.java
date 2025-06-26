@@ -1,6 +1,5 @@
 package com.cinelist.cinelist_api.domain;
 
-import com.cinelist.cinelist_api.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 

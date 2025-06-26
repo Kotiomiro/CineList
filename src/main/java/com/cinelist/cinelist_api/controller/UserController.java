@@ -1,6 +1,6 @@
 package com.cinelist.cinelist_api.controller;
 
-import com.cinelist.cinelist_api.domain.user.User;
+import com.cinelist.cinelist_api.domain.User;
 import com.cinelist.cinelist_api.repository.UserRepository;
 import com.cinelist.cinelist_api.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
